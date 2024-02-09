@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Candidate{% endblock %}
+
+{% block content %}
+<h2>Edit Candidate</h2>
+<form method="POST" action="{{ url_for('edit_candidate', candidate_id=candidate[0]) }}">
+  <div class="form-group">
+    <label for="candidate_name">Candidate Name</label>
+    <input type="text" class="form-control" id="candidate_name" name="candidate_name" value="{{ candidate[2] }}" required>
+  </div>
+  <div class="form-group">
+    <label for="candidate_party">Candidate Party</label>
+    <input type="text" class="form-control" id="candidate_party" name="candidate_party" value="{{ candidate[3] }}">
+  </div>
+  <div class="form-group">
+    <label for="motive">Motive</label>
+    <textarea class="form-control" id="motive" name="motive" rows="3">{{ candidate[4] }}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="election_id">Select Election</label>
+    <select class="form-control" id="election_id" name="election_id">
+      {% for election in elections %}
+      <option value="{{ election[0] }}" {% if candidate[5] == election[0] %}selected{% endif %}>{{ election[1] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}

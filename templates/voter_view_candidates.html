@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}View Candidates{% endblock %}
+
+{% block content %}
+<h2>{{ election[1] }}</h2>
+<p>Status: {{ election[2] }}</p>
+<p>Start Date: {{ election[3] }}</p>
+<p>End Date: {{ election[4] }}</p>
+
+{% if candidates %}
+<div class="row">
+  {% for candidate in candidates %}
+  <div class="col-md-4">
+    <div class="card">
+      <img src="../static/candidate_pictures/{{ candidate[1] }}" class="card-img-top" alt="Candidate Picture">
+      <div class="card-body">
+        <h5 class="card-title">{{ candidate[2] }}</h5>
+        <p class="card-text">Party: {{ candidate[3] }}</p>
+        <p class="card-text">Motive: {{ candidate[4] }}</p>
+        <form method="POST" action="{{ url_for('voter_view_candidates', election_id=election[0]) }}">
+          <input type="hidden" name="candidate_id" value="{{ candidate[0] }}">
+          {% if election[2] == 'ongoing' %}
+            {% if not existing_vote %}
+              <button type="submit" class="btn btn-primary">Vote</button>
+            {% else %}
+              <button type="button" class="btn btn-secondary" disabled>Voted</button>
+              <p class="text-danger">You have already cast your vote in this election.</p>
+            {% endif %}
+          {% else %}
+            <button type="button" class="btn btn-secondary" disabled>Vote</button>
+            <p class="text-danger">You cannot vote in this election.</p>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+  No candidates available for this election.
+</div>
+{% endif %}
+
+{% endblock %}

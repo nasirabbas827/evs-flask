@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Voter Profile{% endblock %}
+
+{% block content %}
+<h2>Voter Profile</h2>
+<form method="POST" action="{{ url_for('voter_profile') }}">
+  <div class="form-group">
+    <label for="voter_name">Voter Name</label>
+    <input type="text" class="form-control" id="voter_name" name="voter_name" value="{{ voter[1] }}" required>
+  </div>
+  <div class="form-group">
+    <label for="new_password">New Password</label>
+    <input type="password" class="form-control" id="new_password" name="new_password" required>
+  </div>
+  <div class="form-group">
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}

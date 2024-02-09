@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Election{% endblock %}
+
+{% block content %}
+<h2>Are you sure you want to delete the election "{{ election.election_name }}"?</h2>
+<form method="POST">
+  <button type="submit" class="btn btn-danger">Delete</button>
+  <a href="{{ url_for('view_elections') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Election{% endblock %}
+
+{% block content %}
+<h2>Add Election</h2>
+<form method="POST" action="{{ url_for('add_election') }}">
+  <div class="form-group">
+    <label for="election_name">Election Name</label>
+    <input type="text" class="form-control" id="election_name" name="election_name" required>
+  </div>
+  <div class="form-group">
+    <label for="start_date">Start Date</label>
+    <input type="date" class="form-control" id="start_date" name="start_date" required>
+  </div>
+  <div class="form-group">
+    <label for="end_date">End Date</label>
+    <input type="date" class="form-control" id="end_date" name="end_date" required>
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select class="form-control" id="status" name="status">
+      <option value="pending">Pending</option>
+      <option value="ongoing">Ongoing</option>
+      <option value="completed">Completed</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Election</button>
+  <a class="btn btn-outline-dark" href="/admin/view_elections">View Elections</a>
+</form>
+{% endblock %}

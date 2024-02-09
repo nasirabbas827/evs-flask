@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Voter Dashboard{% endblock %}
+
+{% block content %}
+<h2>Voter Dashboard</h2>
+<div class="row">
+  {% for election in elections %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ election[1] }}</h5>
+        <p class="card-text">Status: {{ election[2] }}</p>
+        <p class="card-text">Start Date: {{ election[3] }}</p>
+        <p class="card-text">End Date: {{ election[4] }}</p>
+        <a href="{{ url_for('voter_view_candidates', election_id=election[0]) }}" class="btn btn-primary">View Candidates</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

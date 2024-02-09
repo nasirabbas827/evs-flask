@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Voter{% endblock %}
+
+{% block content %}
+<h2>Edit Voter</h2>
+<form method="POST" action="{{ url_for('edit_voter', voter_id=voter[0]) }}">
+  <div class="form-group">
+    <label for="voter_name">Voter Name</label>
+    <input type="text" class="form-control" id="voter_name" name="voter_name" value="{{ voter[1] }}" required>
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" value="{{ voter[2] }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}

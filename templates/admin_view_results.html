@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}View Results{% endblock %}
+
+{% block content %}
+<h2>Completed Elections and Results</h2>
+
+{% if election_results %}
+  {% for result in election_results %}
+    <h3>{{ result['election'][1] }}</h3>
+    <p>Start Date: {{ result['election'][3] }}</p>
+    <p>End Date: {{ result['election'][4] }}</p>
+    
+    {% if result['results'] %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Candidate Name</th>
+            <th>Votes Taken</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for candidate_result in result['results'] %}
+            <tr>
+              <td>{{ candidate_result[0] }}</td>
+              <td>{{ candidate_result[1] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No results available for this election.</p>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <div class="alert alert-warning" role="alert">
+    No completed elections with results available.
+  </div>
+{% endif %}
+
+{% endblock %}

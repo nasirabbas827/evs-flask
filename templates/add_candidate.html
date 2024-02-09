@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Candidate{% endblock %}
+
+{% block content %}
+<h2>Add Candidate</h2>
+<form method="POST" action="{{ url_for('add_candidate') }}" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="candidate_picture">Candidate Picture (JPEG, JPG, or PNG)</label>
+    <input type="file" class="form-control-file" id="candidate_picture" name="candidate_picture" accept=".jpg, .jpeg, .png" required>
+  </div>
+  <div class="form-group">
+    <label for="candidate_name">Candidate Name</label>
+    <input type="text" class="form-control" id="candidate_name" name="candidate_name" required>
+  </div>
+  <div class="form-group">
+    <label for="candidate_party">Candidate Party</label>
+    <input type="text" class="form-control" id="candidate_party" name="candidate_party">
+  </div>
+  <div class="form-group">
+    <label for="motive">Motive</label>
+    <textarea class="form-control" id="motive" name="motive" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="election_id">Election</label>
+    <select class="form-control" id="election_id" name="election_id">
+      {% for election in elections %}
+      <option value="{{ election[0] }}">{{ election[1] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Candidate</button>
+  <a class="btn btn-outline-dark" href="/admin/view_candidates">View Candidates</a>
+
+</form>
+{% endblock %}

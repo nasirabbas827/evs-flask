@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}View Votes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>View Casted Votes</h2>
+
+    {% if votes %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Vote ID</th>
+                        <th>Voter Name</th>
+                        <th>Candidate Name</th>
+                        <th>Election Name</th>
+                        <th>Timestamp</th>
+                        <th>Block ID</th>
+                        <th>Previous Block Hash</th>
+                        <th>Block Hash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vote in votes %}
+                        <tr>
+                            <td>{{ vote[0] }}</td>
+                            <td>{{ vote[8] }}</td>
+                            <td>{{ vote[9] }}</td>
+                            <td>{{ vote[10] }}</td>
+                            <td>{{ vote[4] }}</td>
+                            <td>{{ vote[5] }}</td>
+                            <td>{{ vote[6] }}</td>
+                            <td>{{ vote[7] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No casted votes available.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Voter{% endblock %}
+
+{% block content %}
+<h2>Add Voter</h2>
+<form method="POST" action="{{ url_for('add_voter') }}">
+  <div class="form-group">
+    <label for="voter_name">Voter Name</label>
+    <input type="text" class="form-control" id="voter_name" name="voter_name" required>
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Voter</button>
+  <a class="btn btn-outline-dark" href="/admin/view_voters">View Voters</a>
+
+</form>
+{% endblock %}
